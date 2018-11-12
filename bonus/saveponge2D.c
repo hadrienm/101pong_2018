@@ -8,13 +8,6 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
-#include <SFML/Audio/Export.h>
-#include <SFML/Audio/SoundStatus.h>
-#include <SFML/Audio/Types.h>
-#include <SFML/System/InputStream.h>
-#include <SFML/System/Time.h>
-#include <SFML/System/Vector3.h>
-#include <stddef.h>
 
 int main()
 {
@@ -27,11 +20,7 @@ int main()
     sfSprite* sprite2;
     sfSprite* sprite3;
     sfEvent event;
-    sfMusic* music;
-    sfMusic* musics;
     int a = 1;
-    int d = 1;
-    int score = 0;
 
     sfVector2f toto = {12, 0};
     sfVector2f tata = {1240, 0};
@@ -41,8 +30,6 @@ int main()
     texture = sfTexture_createFromFile("rectangle.bmp", NULL);
     texture2 = sfTexture_createFromFile("rectangle.bmp", NULL);
     texture3 = sfTexture_createFromFile("balle.bmp", NULL);
-    music = sfMusic_createFromFile("balle.ogg");
-    musics = sfMusic_createFromFile("osu.ogg");
 
     sprite = sfSprite_create();
     sprite2 = sfSprite_create();
@@ -55,54 +42,40 @@ int main()
     sfSprite_setPosition(sprite, toto);
     sfSprite_setPosition(sprite2, tata);
     sfSprite_setPosition(sprite3, balle);
-    sfMusic_play(musics);
     while (sfRenderWindow_isOpen(window)) {
-      if (balle.x != -180 && balle.x != 1170) {
+      if (balle.x != 0 && balle.x != 1170) {
         sfRenderWindow_clear(window, sfWhite);
+        if(tata.y < 600) {
+           sfSprite_setPosition(sprite, tata);
+           sfRenderWindow_drawSprite(window, sprite, NULL);
+           tata.y += 1;
+        }
+
+        if(toto.y < 600) {
+            sfSprite_setPosition(sprite2, toto);
+            sfRenderWindow_drawSprite(window, sprite2, NULL);
+            toto.y += 1;
+        }
         sfSprite_setPosition(sprite3, balle);
         sfRenderWindow_drawSprite(window, sprite3, NULL);
-        if(toto.y < 570) {
-           sfSprite_setPosition(sprite, toto);
-           sfRenderWindow_drawSprite(window, sprite, NULL);
-           toto.y = balle.y;
-        }
-
-        if(tata.y < 570) {
-            sfSprite_setPosition(sprite2, tata);
-            sfRenderWindow_drawSprite(window, sprite2, NULL);
-            tata.y = balle.y;
-        }
         if (balle.y == -200) {
             a = 1;
-            sfMusic_play(music);
-        }
+          }
         if (balle.y == 500) {
           a = -1;
-          sfMusic_play(music);
         }
-        if (balle.x == 1000 && balle.y == tata.y) {
-          d = -1;
-          sfMusic_play(music);
-        }
-        if (balle.x == -140  && balle.y == tata.y) {
-          d = 1;
-          sfMusic_play(music);
-          score++;
-        }
-        balle.x = (balle.x + 1 * d);
+        balle.x += 1;
         balle.y = (balle.y + 1 * a);
 
-        sfRenderWindow_drawSprite(window, sprite3, NULL);
         sfRenderWindow_drawSprite(window, sprite, NULL);
         sfRenderWindow_drawSprite(window, sprite2, NULL);
+        sfRenderWindow_drawSprite(window, sprite3, NULL);
         sfRenderWindow_display(window);
-        printf("mon score est de %d\n", score);
+        printf("je suis une balle%f\n", balle.y);
       } else {
         sfRenderWindow_close(window);
       }
   }
-    sfMusic_destroy(music);
-    sfMusic_destroy(musics);
     sfSprite_destroy(sprite);
     sfSprite_destroy(sprite2);
     sfSprite_destroy(sprite3);
