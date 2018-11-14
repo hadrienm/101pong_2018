@@ -77,16 +77,11 @@ int main (int argc, char **argv)
     teta = asin(fabs(w2[2])/norm_v);
     teta = (teta * 180) / M_PI;
 
-    if ((z0 > 0 && z1 > 0 && z1 < z0) || (z0 < 0 && z1 > 0)) {
+    if ((w[4] >= 0 && z1 >= 0 && w2[2] >= 0) || (w[4] <= 0 && z1 >= 0 && w2[2] >= 0) || (w[4] <= 0 && z1 <= 0 && w[2] <= 0) || (w[4] >= 0 && z1 <= 0 && w2[2] <= 0 )) {
+      printf("The ball won't reach the bat\n");
+      } else {
         printf("The incidence angle is:\n");
         printf("%0.2f", teta);
         printf(" degrees\n");
-      }
-    if ((z0 > 0 && z1 <0) || (z0 < 0 && z1 < 0 && z1 > z0)) {
-        printf("The incidence angle is:\n");
-        printf("%0.2f", teta);
-        printf(" degrees\n");
-    } else {
-        printf("The ball won't reach the bat\n");
     }
 }
