@@ -11,11 +11,24 @@
 
 int main (int argc, char **argv)
 {
-
+    int g = 0;
+    int e = 1;
+    int f = 0;
     if(argc != 8) {
         printf("pas assez d'argument pour éxécuter le programme\n");
         return(84);
     }
+    while (g <= argc) {
+      if (argv[e][f] >= 40 && argv[e][f] <= 57) {
+          f++;
+      } else if (argv[e][f] == '\0') {
+         f = 0;
+         g++;
+         e++;
+       } else {
+         return(84);
+         }
+       }
 
     float norm_w = 0;
     int i = 0;
@@ -77,9 +90,13 @@ int main (int argc, char **argv)
     teta = asin(fabs(w2[2])/norm_v);
     teta = (teta * 180) / M_PI;
 
-    if ((w[4] >= 0 && z1 >= 0 && w2[2] >= 0) || (w[4] <= 0 && z1 >= 0 && w2[2] >= 0) || (w[4] <= 0 && z1 <= 0 && w[2] <= 0) || (w[4] >= 0 && z1 <= 0 && w2[2] <= 0 )) {
+    if ((w[4] > 0 && z1 > 0 && w2[2] > 0) || (w[4] < 0 && z1 > 0 && w2[2] > 0) || (w[4] < 0 && z1 < 0 && w[2] < 0) || (w[4] > 0 && z1 < 0 && w2[2] < 0 )) {
       printf("The ball won't reach the bat\n");
-      } else {
+    } else if (w[0] == w[1] && w[2] == w[3] && w[4] == w[5]){
+      printf("The incidence angle is:\n");
+      printf("0.00");
+      printf(" degrees\n");
+    } else {
         printf("The incidence angle is:\n");
         printf("%0.2f", teta);
         printf(" degrees\n");
