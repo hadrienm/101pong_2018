@@ -18,17 +18,6 @@ int main (int argc, char **argv)
         printf("pas assez d'argument pour éxécuter le programme\n");
         return(84);
     }
-    while (g <= argc) {
-      if (argv[e][f] >= 40 && argv[e][f] <= 57) {
-          f++;
-      } else if (argv[e][f] == '\0') {
-         f = 0;
-         g++;
-         e++;
-       } else {
-         return(84);
-         }
-       }
 
     float norm_w = 0;
     int i = 0;
