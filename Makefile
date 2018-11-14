@@ -5,8 +5,6 @@
 ## finalstumper
 ##
 
-#include <stdio.h>
-
 CC	= gcc
 
 RM	= rm -f

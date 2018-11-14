@@ -28,7 +28,7 @@ int main (int argc, char **argv)
     float z0 = atof(argv[3]);
     float z1 = atof(argv[6]);
     int n = atof(argv[7]);
-    float w2[3] =  {x1 - x0, y1 - y0, z1 - z0};
+    float w2[3] = {x1 - x0, y1 - y0, z1 - z0};
     float w[6] = {x0, x1, y0, y1 ,z0, z1};
     float w1[3] = {x1 - x0, y1 - y0, z1 - z0};
     float norm_v = 0;
@@ -36,7 +36,7 @@ int main (int argc, char **argv)
 
     printf("The velocity vector of the ball is :\n");
 
-    for(i = 0; i <= 2; i++){
+    for(i = 0; i <= 2; i++) {
         if(i == 0)
             printf("(");
         printf("%0.2f", w2[i]);
@@ -47,12 +47,12 @@ int main (int argc, char **argv)
     }
 
     for(i = 0; i <3; i ++) {
-        norm_v += w2[i]*w2[i];
+        norm_v += w2[i] * w2[i];
     }
 
     norm_v = sqrt(norm_v);
 
-    for(i = 0; i < 3; i++){
+    for(i = 0; i < 3; i++) {
         w1[i] = (w1[i] * n + 1) + w[d] - 1;
         d += 2;
     }
@@ -77,7 +77,11 @@ int main (int argc, char **argv)
     teta = asin(fabs(w2[2])/norm_v);
     teta = (teta * 180) / M_PI;
 
-    if ((z0 > 0 && z1 > 0 && z1 < z0) || (z0 < 0 && z1 > 0) || (z0 > 0 && z1 <0) || (z0 < 0 && z1 < 0 && z1 > z0)) {
+    if ((z0 > 0 && z1 > 0 && z1 < z0) || (z0 < 0 && z1 > 0)) {
+        printf("The incidence angle is:\n");
+        printf("%0.2f", teta);
+        printf(" degrees\n");
+    if ((z0 > 0 && z1 <0) || (z0 < 0 && z1 < 0 && z1 > z0)) {
         printf("The incidence angle is:\n");
         printf("%0.2f", teta);
         printf(" degrees\n");
