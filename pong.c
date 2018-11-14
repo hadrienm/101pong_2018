@@ -72,7 +72,7 @@ int main (int argc, char **argv)
             printf(", ");
         if(i == 2)
             printf(")\n");
-    } 
+    }
 
     teta = asin(fabs(w2[2])/norm_v);
     teta = (teta * 180) / M_PI;
@@ -81,6 +81,7 @@ int main (int argc, char **argv)
         printf("The incidence angle is:\n");
         printf("%0.2f", teta);
         printf(" degrees\n");
+      }
     if ((z0 > 0 && z1 <0) || (z0 < 0 && z1 < 0 && z1 > z0)) {
         printf("The incidence angle is:\n");
         printf("%0.2f", teta);
