@@ -81,7 +81,7 @@ int main (int argc, char **argv)
 
     if ((w[4] > 0 && z1 > 0 && w2[2] > 0) || (w[4] < 0 && z1 > 0 && w2[2] > 0) || (w[4] < 0 && z1 < 0 && w[2] < 0) || (w[4] > 0 && z1 < 0 && w2[2] < 0 )) {
       printf("The ball won't reach the bat\n");
-    } else if (w[0] == w[1] && w[2] == w[3] && w[4] == w[5]){
+    } else if (w2[2] == 0){
       printf("The incidence angle is:\n");
       printf("0.00");
       printf(" degrees\n");
